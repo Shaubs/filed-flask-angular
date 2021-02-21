@@ -1,0 +1,45 @@
+<div style="display: flex;flex-direction: row;">
+    <div>
+        <div style="margin-bottom: 2%;">
+            <button mat-raised-button (click)="audioType='song'">SONG</button>
+            <button mat-raised-button (click)="audioType='podcast'">PODCAST</button>
+            <button mat-raised-button (click)="audioType='audiobook'">AUDIOBOOK</button>
+        </div>
+        <div *ngIf="audioType!=undefined">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Getting you {{audioType}} List</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+
+                    <form name="uploadForm" [formGroup]="audiofileInfo">
+                        <button mat-raised-button (click)="onSubmit()" [disabled]="audiofileInfo.invalid"
+                            color="primary">GET</button>
+                        <div class="audiofileID">
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>audiofileID</mat-label>
+                                <input formControlName="audiofileID" matInput />
+                            </mat-form-field>
+                        </div>
+
+
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div *ngIf="data!=undefined || data!=null">
+        <mat-card style="margin-left: 5%;">
+            <mat-card-header>
+                <mat-card-title>Your List:</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div *ngFor="let k of data">
+                    <li>{{k | json}}</li>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>

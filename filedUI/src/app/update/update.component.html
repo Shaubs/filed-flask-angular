@@ -1,0 +1,151 @@
+<div style="display: flex;flex-direction: row;">
+    <div>
+        <div style="margin-bottom: 2%;">
+            <button mat-raised-button (click)="audioType='song'">SONG</button>
+            <button mat-raised-button (click)="audioType='podcast'">PODCAST</button>
+            <button mat-raised-button (click)="audioType='audiobook'">AUDIOBOOK</button>
+        </div>
+        <div *ngIf="audioType!=undefined">
+            <div *ngIf="audioType=='podcast'">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Fill PODCAST Details</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+
+                        <form (ngSubmit)=" onSubmit()" name="uploadForm" [formGroup]="podcastInfo">
+
+
+
+                            <div class="ID">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>ID</mat-label>
+                                    <input formControlName="ID" matInput />
+                                </mat-form-field>
+                            </div>
+                            <div class="Name">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input formControlName="Name" maxlength="100" matInput />
+                                </mat-form-field>
+                            </div>
+                            <div class="Host">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Host</mat-label>
+                                    <input formControlName="Host" maxlength="100" matInput />
+                                </mat-form-field>
+                            </div>
+                            <div class="Participants">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Participants</mat-label>
+                                    <input formControlName="Participants" maxlength="100" matInput />
+                                </mat-form-field>
+                            </div>
+
+                            <div class="Duration in Seconds">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Duration</mat-label>
+                                    <input type="number" matInput min="1" formControlName="Duration" />
+                                </mat-form-field>
+                            </div>
+
+                            <button mat-raised-button onclick="onSubmit()" [disabled]="podcastInfo.invalid"
+                                color="primary">Submit</button>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div *ngIf="audioType=='song'">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Fill Song Details</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+
+                        <form name="uploadForm" [formGroup]="songInfo">
+                            <div class="ID">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>ID</mat-label>
+                                    <input formControlName="ID" matInput />
+                                </mat-form-field>
+                            </div>
+                            <div class="Name">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input formControlName="Name" maxlength="100" matInput />
+                                </mat-form-field>
+                            </div>
+                            <div class="Duration in Seconds">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Duration</mat-label>
+                                    <input type="number" matInput min="1" formControlName="Duration" />
+                                </mat-form-field>
+                            </div>
+
+                            <button mat-raised-button (click)="onSubmit()" [disabled]="songInfo.invalid"
+                                color="primary">Submit</button>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+
+            </div>
+            <div *ngIf="audioType=='audiobook'">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Fill AUDIO BOOK Details</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+
+                        <form (ngSubmit)="onSubmit()" name="uploadForm" [formGroup]="audiobookInfo">
+
+                            <div class="ID">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>ID</mat-label>
+                                    <input formControlName="ID" matInput />
+                                </mat-form-field>
+                            </div>
+                            <div class="Name">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input formControlName="Name" maxlength="100" matInput />
+                                </mat-form-field>
+                            </div>
+                            <div class="Author">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Author</mat-label>
+                                    <input formControlName="Author" maxlength="100" matInput />
+                                </mat-form-field>
+                            </div>
+                            <div class="Narrator">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Narrator</mat-label>
+                                    <input formControlName="Narrator" maxlength="100" matInput />
+                                </mat-form-field>
+                            </div>
+
+                            <div class="Duration in Seconds">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Duration</mat-label>
+                                    <input type="number" matInput min="1" formControlName="Duration" />
+                                </mat-form-field>
+                            </div>
+
+                            <button mat-raised-button onclick="onSubmit()" [disabled]="audiobookInfo.invalid"
+                                color="primary">Submit</button>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+        </div>
+
+    </div>
+    <div>
+        <mat-card style="margin-left: 10%;">
+            <mat-card-header>
+                <mat-card-title>API RESPONSES:</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>{{Response | json}}</mat-card-content>
+        </mat-card>
+    </div>
+</div>

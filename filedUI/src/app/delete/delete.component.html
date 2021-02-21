@@ -1,0 +1,43 @@
+<div style="display: flex;">
+    <div>
+        <div style="margin-bottom: 2%;">
+            <button mat-raised-button (click)="audioType='song'">SONG</button>
+            <button mat-raised-button (click)="audioType='podcast'">PODCAST</button>
+            <button mat-raised-button (click)="audioType='audiobook'">AUDIOBOOK</button>
+        </div>
+        <div *ngIf="audioType!=undefined">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Fill {{audioType}} Details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+
+                    <form name="uploadForm" [formGroup]="audiofileInfo">
+
+                        <div class="audiofileID">
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>audiofileID</mat-label>
+                                <input formControlName="audiofileID" matInput required />
+                                <mat-error *ngIf="audiofileInfo.invalid">
+                                    Mandatory to fill
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <button mat-raised-button (click)="onSubmit()" [disabled]="audiofileInfo.invalid"
+                            color="primary">DELETE</button>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div>
+        <mat-card style="margin-left: 10%;">
+            <mat-card-header>
+                <mat-card-title>API RESPONSES:</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>{{Response | json}}</mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,151 @@
+<div style="display: flex;flex-direction: row;">
+    <div>
+        <div style="margin-bottom: 2%;">
+            <button mat-raised-button (click)="audioType='song'">SONG</button>
+            <button mat-raised-button (click)="audioType='podcast'">PODCAST</button>
+            <button mat-raised-button (click)="audioType='audiobook'">AUDIOBOOK</button>
+        </div>
+        <div *ngIf="audioType!=undefined">
+            <div *ngIf="audioType=='podcast'">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Fill PODCAST Details</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+
+                        <form name="uploadForm" [formGroup]="podcastInfo">
+
+                            <div class="Name">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input formControlName="Name" matInput required />
+                                    <mat-error *ngIf="podcastInfo.invalid">
+                                        Mandatory to fill
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="Host">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Host</mat-label>
+                                    <input formControlName="Host" matInput required />
+                                    <mat-error *ngIf="podcastInfo.invalid">
+                                        Mandatory to fill
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="Participants">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Participants</mat-label>
+                                    <input formControlName="Participants" matInput />
+                                </mat-form-field>
+                            </div>
+
+                            <div class="Duration in Seconds">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Duration</mat-label>
+                                    <input type="number" matInput formControlName="Duration" />
+                                    <mat-error *ngIf="podcastInfo.invalid">must be more than 0 seconds</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <button mat-raised-button (click)="onSubmit()" [disabled]="podcastInfo.invalid"
+                                color="primary">Submit</button>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div *ngIf="audioType=='song'">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Fill Song Details</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+
+                        <form name="uploadForm" [formGroup]="songInfo">
+
+                            <div class="Name">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input formControlName="Name" matInput required />
+                                    <mat-error *ngIf="songInfo.invalid">
+                                        Mandatory to fill
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="Duration in Seconds">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Duration</mat-label>
+                                    <input type="number" matInput formControlName="Duration" />
+                                    <mat-error *ngIf="songInfo.invalid">must be more than 0 seconds</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <button mat-raised-button (click)="onSubmit()" [disabled]="songInfo.invalid"
+                                color="primary">Submit</button>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div *ngIf="audioType=='audiobook'">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Fill AUDIO BOOK Details</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+
+                        <form name="uploadForm" [formGroup]="audiobookInfo">
+
+                            <div class="Name">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Name</mat-label>
+                                    <input formControlName="Name" matInput required />
+                                    <mat-error *ngIf="audiobookInfo.invalid">
+                                        Mandatory to fill
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="Author">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Author</mat-label>
+                                    <input formControlName="Author" matInput required />
+                                    <mat-error *ngIf="audiobookInfo.invalid">
+                                        Mandatory to fill
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="Narrator">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Narrator</mat-label>
+                                    <input formControlName="Narrator" matInput required />
+                                    <mat-error *ngIf="audiobookInfo.invalid">
+                                        Mandatory to fill
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="Duration in Seconds">
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Duration</mat-label>
+                                    <input type="number" matInput formControlName="Duration" />
+                                    <mat-error *ngIf="audiobookInfo.invalid">must be more than 0 seconds</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <button mat-raised-button (click)="onSubmit()" [disabled]="audiobookInfo.invalid"
+                                color="primary">Submit</button>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div>
+        <mat-card style="margin-left: 10%;">
+            <mat-card-header>
+                <mat-card-title>API RESPONSES:</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>{{Response | json}}</mat-card-content>
+        </mat-card>
+    </div>
+</div>
